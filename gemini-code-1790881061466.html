@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emmanuel BAKABADIO - Portfolio</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-main: #0B0F19;
+            --bg-card: #111827;
+            --bg-card-hover: #1F2937;
+            --accent-blue: #3B82F6;
+            --accent-cyan: #06B6D4;
+            --text-main: #F3F4F6;
+            --text-muted: #9CA3AF;
+            --border-color: #1F2937;
+            --border-highlight: #374151;
+            --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.15);
+            --modal-bg: rgba(0, 0, 0, 0.8);
+        }
+
+        [data-theme="light"] {
+            --bg-main: #F9FAFB;
+            --bg-card: #FFFFFF;
+            --bg-card-hover: #F3F4F6;
+            --accent-blue: #2563EB;
+            --accent-cyan: #0891B2;
+            --text-main: #111827;
+            --text-muted: #4B5563;
+            --border-color: #E5E7EB;
+            --border-highlight: #D1D5DB;
+            --shadow-glow: 0 10px 25px rgba(37, 99, 235, 0.15);
+            --modal-bg: rgba(255, 255, 255, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .tech-badge {
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* Header & Nav */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--bg-main);
+            opacity: 0.95;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+        }
+
+        /* Logo / Nom & Prénom Agrandis */
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .logo i {
+            color: var(--accent-cyan);
+            font-size: 1.6rem;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .icon-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 0.5rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .icon-btn:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .hero-subtitle {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.2rem;
+            color: var(--text-main);
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 750px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--accent-blue);
+            color: #FFF;
+        }
+
+        .btn-primary:hover {
+            background: #2563EB;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            transform: translateY(-2px);
+        }
+
+        /* Container Section */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-header {
+            margin-bottom: 3.5rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title i {
+            color: var(--accent-cyan);
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .project-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-blue);
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .project-techs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-badge {
+            background: var(--bg-main);
+            border: 1px solid var(--border-highlight);
+            color: var(--accent-cyan);
+            font-size: 0.8rem;
+            padding: 0.3rem 0.7rem;
+            border-radius: 6px;
+        }
+
+        .btn-modal {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            width: 100%;
+            padding: 0.7rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-modal:hover {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+            color: #FFF;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .skill-card:hover {
+            border-color: var(--accent-cyan);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .skill-header i {
+            font-size: 1.2rem;
+            color: var(--accent-cyan);
+        }
+
+        .skill-header h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill-list li::before {
+            content: "•";
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            border-left: 2px solid var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.45rem;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+            border: 3px solid var(--bg-main);
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .timeline-company {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .timeline-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .timeline-desc li {
+            margin-bottom: 0.4rem;
+        }
+
+        /* Contact & Footer */
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 0.8rem 1.2rem;
+            background: var(--bg-main);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Modal Details */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--modal-bg);
+            backdrop-filter: blur(5px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-highlight);
+            border-radius: 12px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.2rem;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-close:hover {
+            color: var(--text-main);
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .modal-section {
+            margin-top: 1.5rem;
+        }
+
+        .modal-section h4 {
+            color: var(--accent-cyan);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .modal-section p, .modal-section ul {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .modal-section ul {
+            padding-left: 1.2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .nav-links { display: none; }
+            .hero-btns { flex-direction: column; }
+            .contact-links { flex-direction: column; }
+            .logo { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-server"></i> Emmanuel BAKABADIO
+            </a>
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="#projets" data-i18n="nav_projects">Projets Réalisés</a></li>
+                    <li><a href="#competences" data-i18n="nav_skills">Compétences</a></li>
+                    <li><a href="#experience" data-i18n="nav_journey">Parcours</a></li>
+                    <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+                </ul>
+                <div class="controls">
+                    <button id="themeToggle" class="icon-btn" title="Thème"><i class="fa-solid fa-sun"></i></button>
+                    <button id="langToggle" class="icon-btn" title="Langue">EN</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-subtitle" data-i18n="hero_subtitle">BTS SIO Option SISR — Institut F2i</div>
+            <h1 data-i18n="hero_title">Technicien Réseau & Administrateur Systèmes</h1>
+            <p data-i18n="hero_desc">Passionné par les systèmes, les réseaux et la cybersécurité, je développe mes compétences à travers différents projets et expériences techniques. 🚀 Explorez mon parcours, mes compétences et mes réalisations !</p>
+            <div class="hero-btns">
+                <a href="#projets" class="btn btn-primary"><i class="fa-solid fa-folder-open"></i> <span data-i18n="btn_projects">Découvrir mes projets</span></a>
+                <a href="#contact" class="btn btn-secondary"><i class="fa-solid fa-envelope"></i> <span data-i18n="btn_contact">Me contacter</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Projets -->
+    <section id="projets" class="section">
+        <div class="section-header">
+            <div class="section-title">
+                <i class="fa-solid fa-diagram-project"></i> <span data-i18n="projects_title">Projets & Réalisations Techniques</span>
+            </div>
+            <p class="section-desc" data-i18n="projects_desc">Projets clés axés sur l'administration système, la sécurité Windows et la gestion d'infrastructure réseau.</p>
+        </div>
+
+        <div class="projects-grid">
+            <!-- Projet 1 -->
+            <div class="project-card">
+                <div>
+                    <div class="project-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <div class="project-title" data-i18n="p1_title">Infrastructure Active Directory & Sécurité GPO / AppLocker</div>
+                    <div class="project-desc" data-i18n="p1_desc">
+                        Mise en place d'un domaine Active Directory structuré avec Unités d'Organisation (OU), gestion centralisée des utilisateurs et sécurisation stricte des postes via GPO et règles AppLocker.
+                    </div>
+                    <div class="project-techs">
+                        <span class="tech-badge">Windows Server</span>
+                        <span class="tech-badge">AD DS</span>
+                        <span class="tech-badge">GPO</span>
+                        <span class="tech-badge">AppLocker</span>
+                    </div>
+                </div>
+                <button class="btn-modal" onclick="openModal('modal1')">
+                    <i class="fa-solid fa-circle-info"></i> <span data-i18n="btn_details">Détails pour l'oral</span>
+                </button>
+            </div>
+
+            <!-- Projet 2 -->
+            <div class="project-card">
+                <div>
+                    <div class="project-icon"><i class="fa-solid fa-desktop"></i></div>
+                    <div class="project-title" data-i18n="p2_title">Déploiement Automatisé de Postes Clients</div>
+                    <div class="project-desc" data-i18n="p2_desc">
+                        Industrialisation de la préparation et de l'installation de postes Windows clients, intégration au domaine Active Directory et application automatique des politiques réseau.
+                    </div>
+                    <div class="project-techs">
+                        <span class="tech-badge">Windows 10/11</span>
+                        <span class="tech-badge">Mastering</span>
+                        <span class="tech-badge">Réseau</span>
+                    </div>
+                </div>
+                <button class="btn-modal" onclick="openModal('modal2')">
+                    <i class="fa-solid fa-circle-info"></i> <span data-i18n="btn_details">Détails pour l'oral</span>
+                </button>
+            </div>
+
+            <!-- Projet 3 -->
+            <div class="project-card">
+                <div>
+                    <div class="project-icon"><i class="fa-solid fa-headset"></i></div>
+                    <div class="project-title" data-i18n="p3_title">Gestion de Parc & Support Helpdesk via GLPI</div>
+                    <div class="project-desc" data-i18n="p3_desc">
+                        Déploiement de la solution GLPI pour la gestion automatisée du parc informatique, l'inventaire matériel/logiciel et le traitement des incidents (Ticketing/Support).
+                    </div>
+                    <div class="project-techs">
+                        <span class="tech-badge">GLPI</span>
+                        <span class="tech-badge">Helpdesk</span>
+                        <span class="tech-badge">Inventaire</span>
+                    </div>
+                </div>
+                <button class="btn-modal" onclick="openModal('modal3')">
+                    <i class="fa-solid fa-circle-info"></i> <span data-i18n="btn_details">Détails pour l'oral</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Compétences -->
+    <section id="competences" class="section">
+        <div class="section-header">
+            <div class="section-title">
+                <i class="fa-solid fa-list-check"></i> <span data-i18n="skills_title">Compétences Techniques Maîtrisées</span>
+            </div>
+            <p class="section-desc" data-i18n="skills_desc">Domaines d'intervention ciblés et validés en environnement d'administration et réseau.</p>
+        </div>
+
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-header">
+                    <i class="fa-brands fa-windows"></i>
+                    <h3 data-i18n="s1_title">Administration Windows</h3>
+                </div>
+                <ul class="skill-list">
+                    <li>Windows Server</li>
+                    <li>Active Directory (AD DS)</li>
+                    <li data-i18n="s1_1">Gestion du Domaine</li>
+                    <li data-i18n="s1_2">Arborescence des OU</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <div class="skill-header">
+                    <i class="fa-solid fa-user-gear"></i>
+                    <h3 data-i18n="s2_title">Gestion & Sécurité</h3>
+                </div>
+                <ul class="skill-list">
+                    <li data-i18n="s2_1">Gestion des Utilisateurs</li>
+                    <li data-i18n="s2_2">Stratégies de groupe (GPO)</li>
+                    <li data-i18n="s2_3">Restriction AppLocker</li>
+                    <li data-i18n="s2_4">Politiques de Sécurité</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <div class="skill-header">
+                    <i class="fa-solid fa-computer"></i>
+                    <h3 data-i18n="s3_title">Postes Clients & Déploiement</h3>
+                </div>
+                <ul class="skill-list">
+                    <li data-i18n="s3_1">Déploiement de postes</li>
+                    <li data-i18n="s3_2">Configuration & Optimisation</li>
+                    <li data-i18n="s3_3">Jonction au domaine</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <div class="skill-header">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                    <h3 data-i18n="s4_title">Support & Parc Informatique</h3>
+                </div>
+                <ul class="skill-list">
+                    <li data-i18n="s4_1">GLPI (Inventaire & Ticketing)</li>
+                    <li data-i18n="s4_2">Gestion des équipements</li>
+                    <li data-i18n="s4_3">Assistance & Helpdesk</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Parcours (Expérience & Formation) -->
+    <section id="experience" class="section">
+        <div class="section-header">
+            <div class="section-title">
+                <i class="fa-solid fa-briefcase"></i> <span data-i18n="journey_title">Parcours & Expériences</span>
+            </div>
+            <p class="section-desc" data-i18n="journey_desc">Mes formations et immersions en environnement technique.</p>
+        </div>
+
+        <div class="timeline">
+            <!-- Expérience EF2i -->
+            <div class="timeline-item">
+                <div class="timeline-date" data-i18n="exp1_date">Mai 2026 - Août 2026</div>
+                <div class="timeline-title" data-i18n="exp1_title">Stagiaire Administrateur Systèmes & Réseaux</div>
+                <div class="timeline-company">EF2i</div>
+                <ul class="timeline-desc">
+                    <li data-i18n="exp1_l1">Administration de serveurs Windows en environnement professionnel.</li>
+                    <li data-i18n="exp1_l2">Gestion des comptes utilisateurs, groupes et permissions via Active Directory.</li>
+                    <li data-i18n="exp1_l3">Mise en place et application de stratégies de sécurité par GPO.</li>
+                    <li data-i18n="exp1_l4">Maintenance et support sur le parc de postes clients.</li>
+                </ul>
+            </div>
+
+            <!-- Formation BTS SIO -->
+            <div class="timeline-item">
+                <div class="timeline-date">2025 - 2027</div>
+                <div class="timeline-title">BTS SIO - Option SISR</div>
+                <div class="timeline-company">Institut F2i, Paris</div>
+                <ul class="timeline-desc">
+                    <li data-i18n="edu1_desc">Spécialisation en administration systèmes, réseaux et cybersécurité.</li>
+                </ul>
+            </div>
+
+            <!-- Baccalauréat -->
+            <div class="timeline-item">
+                <div class="timeline-date">2023 - 2024</div>
+                <div class="timeline-title" data-i18n="edu2_title">Baccalauréat Général</div>
+                <div class="timeline-company">Lycée Light World School</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="section">
+        <div class="contact-card">
+            <h2 data-i18n="contact_title">Contact & Informations</h2>
+            <p style="color: var(--text-muted); margin-top: 0.5rem;" data-i18n="contact_subtitle">Emmanuel BAKABADIO — Technicien Réseau & Administrateur Systèmes</p>
+            
+            <div class="contact-links">
+                <a href="mailto:Donbakabadio@icloud.com" class="contact-item">
+                    <i class="fa-solid fa-envelope"></i> Donbakabadio@icloud.com
+                </a>
+                <a href="tel:0743589837" class="contact-item">
+                    <i class="fa-solid fa-phone"></i> 07 43 58 98 37
+                </a>
+                <!-- Lien LinkedIn Ajouté -->
+                <a href="https://www.linkedin.com/in/emmanuel-bakabadio" target="_blank" class="contact-item">
+                    <i class="fa-brands fa-linkedin"></i> LinkedIn
+                </a>
+                <div class="contact-item">
+                    <i class="fa-solid fa-location-dot"></i> Paris 15e
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p data-i18n="footer_text">&copy; 2026 Emmanuel BAKABADIO — Portfolio</p>
+    </footer>
+
+    <!-- Modales -->
+    <div id="modal1" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal1')">&times;</button>
+            <div class="modal-title" data-i18n="p1_title">Infrastructure Active Directory & Sécurité GPO / AppLocker</div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-bullseye"></i> <span data-i18n="mod_obj">Objectif du Projet</span></h4>
+                <p data-i18n="mod1_obj">Créer un annuaire Active Directory centralisé et sécurisé pour gérer les identités et restreindre l'exécution d'applications.</p>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-gears"></i> <span data-i18n="mod_actions">Actions Réalisées</span></h4>
+                <ul>
+                    <li data-i18n="mod1_a1">Création de la structure d'Unités d'Organisation (OU).</li>
+                    <li data-i18n="mod1_a2">Gestion des droits selon le principe du moindre privilège.</li>
+                    <li data-i18n="mod1_a3">Configuration d'AppLocker pour interdire les exécutables non validés.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal2" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal2')">&times;</button>
+            <div class="modal-title" data-i18n="p2_title">Déploiement Automatisé de Postes Clients</div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-bullseye"></i> <span data-i18n="mod_obj">Objectif du Projet</span></h4>
+                <p data-i18n="mod2_obj">Standardiser l'installation des systèmes d'exploitation et raccourcir le temps de mise en service d'un nouveau poste.</p>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-gears"></i> <span data-i18n="mod_actions">Actions Réalisées</span></h4>
+                <ul>
+                    <li data-i18n="mod2_a1">Préparation d'une image de référence Windows.</li>
+                    <li data-i18n="mod2_a2">Jonction directe de la machine au domaine Active Directory.</li>
+                    <li data-i18n="mod2_a3">Vérification de l'application immédiate des GPO.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal3" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal3')">&times;</button>
+            <div class="modal-title" data-i18n="p3_title">Gestion de Parc & Support Helpdesk via GLPI</div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-bullseye"></i> <span data-i18n="mod_obj">Objectif du Projet</span></h4>
+                <p data-i18n="mod3_obj">Centraliser l'inventaire matériel et offrir une interface unique pour les demandes de support.</p>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-gears"></i> <span data-i18n="mod_actions">Actions Réalisées</span></h4>
+                <ul>
+                    <li data-i18n="mod3_a1">Mise en place de GLPI pour le suivi du parc.</li>
+                    <li data-i18n="mod3_a2">Gestion et suivi du cycle de vie des tickets d'incidents.</li>
+                    <li data-i18n="mod3_a3">Assistance utilisateur et résolution des problèmes matériels/logiciels.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modales
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal-overlay');
+            modals.forEach(modal => { if (event.target === modal) modal.style.display = 'none'; });
+        }
+
+        // Theme Toggle
+        const themeBtn = document.getElementById('themeToggle');
+        themeBtn.addEventListener('click', () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            themeBtn.innerHTML = isDark ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+        });
+
+        // Translations Dictionary
+        const translations = {
+            fr: {
+                nav_projects: "Projets Réalisés", nav_skills: "Compétences", nav_journey: "Parcours", nav_contact: "Contact",
+                hero_subtitle: "BTS SIO Option SISR — Institut F2i",
+                hero_title: "Technicien Réseau & Administrateur Systèmes",
+                hero_desc: "Passionné par les systèmes, les réseaux et la cybersécurité, je développe mes compétences à travers différents projets et expériences techniques. 🚀 Explorez mon parcours, mes compétences et mes réalisations !",
+                btn_projects: "Découvrir mes projets", btn_contact: "Me contacter",
+                projects_title: "Projets & Réalisations Techniques", projects_desc: "Projets clés axés sur l'administration système, la sécurité Windows et la gestion d'infrastructure réseau.",
+                p1_title: "Infrastructure Active Directory & Sécurité GPO / AppLocker",
+                p1_desc: "Mise en place d'un domaine Active Directory structuré avec Unités d'Organisation (OU), gestion centralisée des utilisateurs et sécurisation stricte des postes via GPO et règles AppLocker.",
+                p2_title: "Déploiement Automatisé de Postes Clients",
+                p2_desc: "Industrialisation de la préparation et de l'installation de postes Windows clients, intégration au domaine Active Directory et application automatique des politiques réseau.",
+                p3_title: "Gestion de Parc & Support Helpdesk via GLPI",
+                p3_desc: "Déploiement de la solution GLPI pour la gestion automatisée du parc informatique, l'inventaire matériel/logiciel et le traitement des incidents (Ticketing/Support).",
+                btn_details: "Détails pour l'oral",
+                skills_title: "Compétences Techniques Maîtrisées", skills_desc: "Domaines d'intervention ciblés et validés en environnement d'administration et réseau.",
+                s1_title: "Administration Windows", s1_1: "Gestion du Domaine", s1_2: "Arborescence des OU",
+                s2_title: "Gestion & Sécurité", s2_1: "Gestion des Utilisateurs", s2_2: "Stratégies de groupe (GPO)", s2_3: "Restriction AppLocker", s2_4: "Politiques de Sécurité",
+                s3_title: "Postes Clients & Déploiement", s3_1: "Déploiement de postes", s3_2: "Configuration & Optimisation", s3_3: "Jonction au domaine",
+                s4_title: "Support & Parc Informatique", s4_1: "GLPI (Inventaire & Ticketing)", s4_2: "Gestion des équipements", s4_3: "Assistance & Helpdesk",
+                journey_title: "Parcours & Expériences", journey_desc: "Mes formations et immersions en environnement technique.",
+                exp1_date: "Mai 2026 - Août 2026", exp1_title: "Stagiaire Administrateur Systèmes & Réseaux",
+                exp1_l1: "Administration de serveurs Windows en environnement professionnel.",
+                exp1_l2: "Gestion des comptes utilisateurs, groupes et permissions via Active Directory.",
+                exp1_l3: "Mise en place et application de stratégies de sécurité par GPO.",
+                exp1_l4: "Maintenance et support sur le parc de postes clients.",
+                edu1_desc: "Spécialisation en administration systèmes, réseaux et cybersécurité.",
+                edu2_title: "Baccalauréat Général",
+                contact_title: "Contact & Informations", contact_subtitle: "Emmanuel BAKABADIO — Technicien Réseau & Administrateur Systèmes",
+                footer_text: "© 2026 Emmanuel BAKABADIO — Portfolio",
+                mod_obj: "Objectif du Projet", mod_actions: "Actions Réalisées",
+                mod1_obj: "Créer un annuaire Active Directory centralisé et sécurisé pour gérer les identités et restreindre l'exécution d'applications.",
+                mod1_a1: "Création de la structure d'Unités d'Organisation (OU).", mod1_a2: "Gestion des droits selon le principe du moindre privilège.", mod1_a3: "Configuration d'AppLocker pour interdire les exécutables non validés.",
+                mod2_obj: "Standardiser l'installation des systèmes d'exploitation et raccourcir le temps de mise en service d'un nouveau poste.",
+                mod2_a1: "Préparation d'une image de référence Windows.", mod2_a2: "Jonction directe de la machine au domaine Active Directory.", mod2_a3: "Vérification de l'application immédiate des GPO.",
+                mod3_obj: "Centraliser l'inventaire matériel et offrir une interface unique pour les demandes de support.",
+                mod3_a1: "Mise en place de GLPI pour le suivi du parc.", mod3_a2: "Gestion et suivi du cycle de vie des tickets d'incidents.", mod3_a3: "Assistance utilisateur et résolution des problèmes matériels/logiciels."
+            },
+            en: {
+                nav_projects: "Projects", nav_skills: "Skills", nav_journey: "Journey", nav_contact: "Contact",
+                hero_subtitle: "IT Degree (BTS SIO) — F2i Institute",
+                hero_title: "Network Technician & Systems Admin",
+                hero_desc: "Passionate about systems, networks, and cybersecurity, I develop my skills through various technical projects and experiences. 🚀 Explore my background, skills, and achievements!",
+                btn_projects: "Discover my projects", btn_contact: "Contact me",
+                projects_title: "Projects & Technical Achievements", projects_desc: "Key projects focused on system administration, Windows security, and network infrastructure.",
+                p1_title: "Active Directory & GPO / AppLocker Security",
+                p1_desc: "Set up a structured AD domain with OUs, centralized user management, and strict workstation security via GPOs and AppLocker rules.",
+                p2_title: "Automated Workstation Deployment",
+                p2_desc: "Industrialized the preparation and installation of Windows clients, integration into the AD domain, and automatic application of network policies.",
+                p3_title: "IT Asset Management & Helpdesk via GLPI",
+                p3_desc: "Deployed GLPI for automated IT asset management, hardware/software inventory, and incident handling (Ticketing/Support).",
+                btn_details: "View Details",
+                skills_title: "Technical Skills", skills_desc: "Validated areas of expertise in administration and networking environments.",
+                s1_title: "Windows Administration", s1_1: "Domain Management", s1_2: "OU Architecture",
+                s2_title: "Management & Security", s2_1: "User Management", s2_2: "Group Policies (GPO)", s2_3: "AppLocker Restrictions", s2_4: "Security Policies",
+                s3_title: "Client Deployment", s3_1: "Workstation Deployment", s3_2: "Config & Optimization", s3_3: "Domain Joining",
+                s4_title: "IT Support", s4_1: "GLPI (Inventory & Ticketing)", s4_2: "Equipment Management", s4_3: "Helpdesk Assistance",
+                journey_title: "Experience & Education", journey_desc: "My academic background and professional immersion.",
+                exp1_date: "May 2026 - Aug 2026", exp1_title: "Systems & Network Admin Intern",
+                exp1_l1: "Administered Windows servers in a professional environment.",
+                exp1_l2: "Managed user accounts, groups, and permissions via Active Directory.",
+                exp1_l3: "Implemented and applied security policies via GPOs.",
+                exp1_l4: "Maintained and supported the client workstation fleet.",
+                edu1_desc: "Specialization in systems administration, networks, and cybersecurity.",
+                edu2_title: "General Baccalaureate",
+                contact_title: "Contact & Info", contact_subtitle: "Emmanuel BAKABADIO — Network Technician & Systems Admin",
+                footer_text: "© 2026 Emmanuel BAKABADIO — Portfolio",
+                mod_obj: "Project Objective", mod_actions: "Actions Taken",
+                mod1_obj: "Create a centralized and secure AD directory to manage identities and restrict applications.",
+                mod1_a1: "Created the Organizational Unit (OU) structure.", mod1_a2: "Managed rights based on the principle of least privilege.", mod1_a3: "Configured AppLocker to block unapproved executables.",
+                mod2_obj: "Standardize OS installation and reduce deployment time for new workstations.",
+                mod2_a1: "Prepared a Windows reference image.", mod2_a2: "Directly joined machines to the AD domain.", mod2_a3: "Verified immediate application of GPOs.",
+                mod3_obj: "Centralize hardware inventory and provide a unified interface for support requests.",
+                mod3_a1: "Implemented GLPI for asset tracking.", mod3_a2: "Managed incident ticket lifecycles.", mod3_a3: "Provided user support and resolved issues."
+            }
+        };
+
+        let currentLang = 'fr';
+        const langBtn = document.getElementById('langToggle');
+
+        langBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'fr' ? 'en' : 'fr';
+            langBtn.innerText = currentLang === 'fr' ? 'EN' : 'FR';
+            
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    element.innerText = translations[currentLang][key];
+                }
+            });
+        });
+    </script>
+</body>
+</html>
